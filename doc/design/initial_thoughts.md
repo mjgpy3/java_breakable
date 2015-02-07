@@ -10,6 +10,7 @@ Ease of use programming language, that is nerdy beyond compare
  -- Not really sure what this means in practice
  - JVM-compliant (because it's everywhere and it's not C/C++)
  - Heavy LISP, Ruby, Python, SML/Haskell influences
+ - Carry standard tooling over! Why re-re-re-re-invent the wheel?
 
 Thoughts:
 ```
