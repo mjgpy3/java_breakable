@@ -22,15 +22,26 @@ public class Tokenizer implements ITokenizer {
 
 		Collection<IToken> result = empty();
 
-		result.add(nextToken(0, code));
+		add(nextToken(0, code), result);
 
 		return result;
 	}
 	
+	private void add(IToken token, Collection<IToken> tokens) {
+		if (token.tokenType() != TokenType.IGNORED) {
+			tokens.add(token);
+		}
+	}
+	
 	private IToken nextToken(Integer index, String code) {
-		if (SYMBOL_TO_TOKEN_TYPE.containsKey(code.substring(0, 1))) {
+		if (SYMBOL_TO_TOKEN_TYPE.containsKey(code.substring(index, 1))) {
 			return new SymbolToken(SYMBOL_TO_TOKEN_TYPE.get(code.substring(index, index+1)));
 		}
+		
+		if (code.charAt(index) == ' ') {
+			return new IgnoredToken();
+		}
+		
 		return new WordToken();
 	}
 

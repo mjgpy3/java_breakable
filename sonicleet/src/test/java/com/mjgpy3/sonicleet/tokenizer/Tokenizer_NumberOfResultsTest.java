@@ -31,6 +31,7 @@ public class Tokenizer_NumberOfResultsTest {
 		return Arrays.asList(new Object[][] {
 				{"", 0},
 				{"foobar", 1},
+				{" ", 0},
 		});
 	}
 	

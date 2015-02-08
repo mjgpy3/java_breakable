@@ -6,5 +6,6 @@ public enum TokenType {
 	OPEN_PAREN,
 	CLOSE_PAREN,
 	COMMA,
-	WORD
+	WORD,
+	IGNORED
 }
