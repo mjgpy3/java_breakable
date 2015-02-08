@@ -33,6 +33,7 @@ public class Tokenizer_NumberOfResultsTest {
 				{"f", 1},
 				{" ", 0},
 				{"a b", 2},
+				{"ab", 1},
 		});
 	}
 	

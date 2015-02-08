@@ -36,9 +36,21 @@ public class Tokenizer implements ITokenizer {
 		return result;
 	}
 	
+	private boolean isSymbolOrIgnored(String s) {
+		return SYMBOL_TO_TOKEN_TYPE.containsKey(s) || s.equals(" ");
+	}
+	
 	private IToken nextToken(Integer index, String code) {
-		System.out.println(index);
-		System.out.println(code);
+		StringBuilder word = new StringBuilder();
+		
+		while (!isSymbolOrIgnored(code.substring(index, index+1))) {
+			word.append(code.substring(index, index + 1));
+			index += 1;
+			if (index == code.length() || isSymbolOrIgnored(code.substring(index, index+1))) {
+                return new WordToken(word.toString());
+			}
+		}
+		
 		if (SYMBOL_TO_TOKEN_TYPE.containsKey(code.substring(index, index+1))) {
 			return new SymbolToken(SYMBOL_TO_TOKEN_TYPE.get(code.substring(index, index+1)));
 		}
