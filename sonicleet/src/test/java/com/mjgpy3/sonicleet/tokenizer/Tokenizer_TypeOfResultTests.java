@@ -36,6 +36,10 @@ public class Tokenizer_TypeOfResultTests {
 				{")", TokenType.CLOSE_PAREN},
 				{",", TokenType.COMMA},
 				{"foo", TokenType.WORD},
+				{"<=", TokenType.WORD},
+				{">=", TokenType.WORD},
+				{">", TokenType.WORD},
+				{"<", TokenType.WORD},
 				{"=", TokenType.BIND},
 		});
 	}

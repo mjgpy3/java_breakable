@@ -12,21 +12,31 @@ Ease of use programming language, that is nerdy beyond compare
  - Heavy LISP, Ruby, Python, SML/Haskell influences
  - Carry standard tooling over! Why re-re-re-re-invent the wheel?
 
-Thoughts:
 ```
-map inc items
+cond {
+  == 0 (mod x 3), "Fizz",
+  == 0 (mod x 5), "Buzz",
+  == 0 (mod x 15), "FizzBuzz"
+}
+```
+So,
+ - Lists in curlies
+ - Items are comma separated
+ - Very LISP-like (i.e. no operator prec)
+ - Space to apply functions
+
+```
+map [value, + 1 value] {1, 2, 3}
 ```
 
-Or
-```
-items.map [i, i + 1]
-```
+So,
+ - Lambdas are in []s
+ - params are spaced before comma
 
 ```
-inc i = i + 1
+add = [a b, + a b]
 ```
 
-Or
-```
-inc = [i, i + 1]
-```
+So,
+ - Again, spaced
+ - add is bound to the lambda that accepts 2 values
