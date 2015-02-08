@@ -3,8 +3,10 @@ package com.mjgpy3.sonicleet.tokenizer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Tokenizer implements ITokenizer {
 	
@@ -15,7 +17,13 @@ public class Tokenizer implements ITokenizer {
 				put("(", TokenType.OPEN_PAREN);
 				put(")", TokenType.CLOSE_PAREN);
 				put(",", TokenType.COMMA);
+				put("=", TokenType.BIND);
 			}};
+	private final Set<String> IGNORED_SYMBOLS = new HashSet<String>() {{
+		add(" ");
+		add("\t");
+		add("\n");
+	}};
 
 	public Collection<IToken> tokenize(String code) {
 		if (code.isEmpty()) { return empty(); }
@@ -37,7 +45,7 @@ public class Tokenizer implements ITokenizer {
 	}
 	
 	private boolean isSymbolOrIgnored(String s) {
-		return SYMBOL_TO_TOKEN_TYPE.containsKey(s) || s.equals(" ");
+		return SYMBOL_TO_TOKEN_TYPE.containsKey(s) || IGNORED_SYMBOLS.contains(s);
 	}
 	
 	private IToken nextToken(Integer index, String code) {
@@ -55,7 +63,7 @@ public class Tokenizer implements ITokenizer {
 			return new SymbolToken(SYMBOL_TO_TOKEN_TYPE.get(code.substring(index, index+1)));
 		}
 		
-		if (code.charAt(index) == ' ') {
+		if (IGNORED_SYMBOLS.contains(code.substring(index, index+1))) {
 			return new IgnoredToken();
 		}
 		

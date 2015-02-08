@@ -7,5 +7,6 @@ public enum TokenType {
 	CLOSE_PAREN,
 	COMMA,
 	WORD,
-	IGNORED
+	IGNORED,
+	BIND
 }
