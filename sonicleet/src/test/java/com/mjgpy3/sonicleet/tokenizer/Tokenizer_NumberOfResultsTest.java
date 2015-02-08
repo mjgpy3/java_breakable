@@ -40,6 +40,8 @@ public class Tokenizer_NumberOfResultsTest {
 				{"[a b, a + b]", 8},
 				{"add=[b c, b + c]", 10},
 				{"equal?", 1},
+				{"42", 1},
+				{"-42", 1},
 		});
 	}
 	

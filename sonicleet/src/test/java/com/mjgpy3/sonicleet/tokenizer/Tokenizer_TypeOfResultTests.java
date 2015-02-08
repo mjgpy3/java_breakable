@@ -43,6 +43,7 @@ public class Tokenizer_TypeOfResultTests {
 				{"<", TokenType.WORD},
 				{"=", TokenType.BIND},
 				{"42", TokenType.INTEGER},
+				{"-42", TokenType.INTEGER},
 		});
 	}
 	
