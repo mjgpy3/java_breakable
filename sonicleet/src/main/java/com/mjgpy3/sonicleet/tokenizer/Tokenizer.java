@@ -66,10 +66,12 @@ public class Tokenizer implements ITokenizer {
 		Integer decimalCount = 0;
 		
 		if (next(code, index).equals("'")) {
+			String last;
 			do {
-                word.append(next(code, index));
+				last = next(code, index);
+                word.append(last);
                 index += 1;
-			} while (!next(code, index).equals("'"));
+			} while (!last.equals("\\") && index != code.length() && !next(code, index).equals("'"));
 			
 			return new StringToken(word.append("'").toString());
 		}
