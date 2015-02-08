@@ -9,5 +9,6 @@ public enum TokenType {
 	WORD,
 	IGNORED,
 	BIND,
-	INTEGER
+	INTEGER,
+	DOUBLE
 }

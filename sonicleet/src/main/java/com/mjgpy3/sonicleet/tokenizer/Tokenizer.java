@@ -62,13 +62,19 @@ public class Tokenizer implements ITokenizer {
 	
 	private IToken nextToken(Integer index, String code) {
 		StringBuilder word = new StringBuilder();
+		Integer decimalCount = 0;
 		
 		while (isWordCharacter(next(code, index))) {
-			word.append(next(code, index));
+			String current = next(code, index);
+			word.append(current);
+			decimalCount += current.equals(".") ? 1 : 0;
 			index += 1;
 			if (index == code.length() || !isWordCharacter(next(code, index))) {
 				if (word.toString().matches("-?\\d+")) {
 					return new IntegerToken(word.toString());
+				}
+				if (word.toString().matches("-?[0-9.]{2,}") && decimalCount == 1) {
+					return new DoubleToken(word.toString());
 				}
                 return new WordToken(word.toString());
 			}

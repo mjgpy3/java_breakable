@@ -42,6 +42,8 @@ public class Tokenizer_NumberOfResultsTest {
 				{"equal?", 1},
 				{"42", 1},
 				{"-42", 1},
+				{"42.9", 1},
+				{"4.2.9", 1},
 		});
 	}
 	

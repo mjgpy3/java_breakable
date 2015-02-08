@@ -44,6 +44,14 @@ public class Tokenizer_TypeOfResultTests {
 				{"=", TokenType.BIND},
 				{"42", TokenType.INTEGER},
 				{"-42", TokenType.INTEGER},
+				{"42.9", TokenType.DOUBLE},
+				{"-42.9", TokenType.DOUBLE},
+				{"-.9", TokenType.DOUBLE},
+				{"-1.", TokenType.DOUBLE},
+				{"-1-", TokenType.WORD},
+				{"4.2.9", TokenType.WORD},
+				{"-", TokenType.WORD},
+				{"-.", TokenType.WORD},
 		});
 	}
 	
