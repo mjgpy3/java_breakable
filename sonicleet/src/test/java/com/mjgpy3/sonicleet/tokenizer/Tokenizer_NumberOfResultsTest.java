@@ -1,15 +1,23 @@
 package com.mjgpy3.sonicleet.tokenizer;
 
 import static org.junit.Assert.*;
-
 import static org.hamcrest.CoreMatchers.is;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class Tokenizer_NumberOfResultsTest {
+	
+	private String toTokenize;
+	
+	private Integer expectedCount;
 	
 	private ITokenizer uut;
 
@@ -17,19 +25,24 @@ public class Tokenizer_NumberOfResultsTest {
 	public void setUp() {
 		uut = new Tokenizer();
 	}
-
-	@Test
-	public void tokenizing_the_empty_string_returns_no_results() {
-		Collection<IToken> result = uut.tokenize("");
-		
-		assertThat(result.size(), is(0));
+	
+	@Parameters
+	public static Collection<Object[]> cases() {
+		return Arrays.asList(new Object[][] {
+				{"", 0},
+				{"foobar", 1},
+		});
 	}
-
-	@Test
-	public void tokenizing_a_word_has_one_element() {
-		Collection<IToken> result = uut.tokenize("foobar");
-		
-		assertThat(result.size(), is(1));
+	
+	public Tokenizer_NumberOfResultsTest(String code, Integer expectedSize) {
+		toTokenize = code;
+		expectedCount = expectedSize;
 	}
-
+	
+	@Test
+	public void tokenizing_returns_expected_number_of_results() {
+		Collection<IToken> result = uut.tokenize(toTokenize);
+		
+		assertThat(result.size(), is(expectedCount));
+	}
 }

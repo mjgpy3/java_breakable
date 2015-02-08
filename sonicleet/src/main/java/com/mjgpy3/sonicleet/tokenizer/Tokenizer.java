@@ -17,23 +17,24 @@ public class Tokenizer implements ITokenizer {
 				put(",", TokenType.COMMA);
 			}};
 
-	public Collection<IToken> tokenize(String string) {
-		List<IToken> result = new ArrayList<IToken>();
-		
-		if (string.isEmpty()) {
-			return result;
-		}
+	public Collection<IToken> tokenize(String code) {
+		if (code.isEmpty()) { return empty(); }
 
-		IToken token;
-		
-		if (SYMBOL_TO_TOKEN_TYPE.containsKey(string.substring(0, 1))) {
-			token = new SymbolToken(SYMBOL_TO_TOKEN_TYPE.get(string.substring(0, 1)));
-		} else {
-			token = new WordToken();
-		}
+		Collection<IToken> result = empty();
 
-		result.add(token);
+		result.add(nextToken(0, code));
 
 		return result;
+	}
+	
+	private IToken nextToken(Integer index, String code) {
+		if (SYMBOL_TO_TOKEN_TYPE.containsKey(code.substring(0, 1))) {
+			return new SymbolToken(SYMBOL_TO_TOKEN_TYPE.get(code.substring(index, index+1)));
+		}
+		return new WordToken();
+	}
+
+	private Collection<IToken> empty() {
+		return new ArrayList<IToken>();
 	}
 }
