@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class Tokenizer implements ITokenizer {
 	
-	private final Map<String, TokenType> SYMBOL_TO_TOKEN_TYPE =
+	public static final Map<String, TokenType> SYMBOL_TO_TOKEN_TYPE =
 			new HashMap<String, TokenType>() {{
 				put("[", TokenType.OPEN_SQUARE);
 				put("]", TokenType.CLOSE_SQUARE);
@@ -20,7 +20,7 @@ public class Tokenizer implements ITokenizer {
 				put(",", TokenType.COMMA);
 				put("=", TokenType.BIND);
 			}};
-	private final Set<String> IGNORED_SYMBOLS = new HashSet<String>() {{
+	public static final Set<String> IGNORED_SYMBOLS = new HashSet<String>() {{
 		add(" ");
 		add("\t");
 		add("\n");
@@ -46,53 +46,24 @@ public class Tokenizer implements ITokenizer {
 	}
 	
 	private boolean isWordCharacter(String s) {
-		return !isSymbol(s) && !isIgnored(s);
+		return !isSymbol(s) && !IGNORED_SYMBOLS.contains(s);
 	}
 	
 	private boolean isSymbol(String s) {
 		return SYMBOL_TO_TOKEN_TYPE.containsKey(s);
 	}
 	
-	private boolean isIgnored(String s) {
-		return IGNORED_SYMBOLS.contains(s);
-	}
-	
-	private String next(String s, Integer i) {
-		return s.substring(i, i+1);
-	}
-	
 	private IToken nextToken(Integer index, String code) {
-		StringBuilder word = new StringBuilder();
-		Integer decimalCount = 0;
-		
-		if (next(code, index).equals("'")) {
-			String last;
-			do {
-				last = next(code, index);
-                word.append(last);
-                index += 1;
-			} while (!last.equals("\\") && index != code.length() && !next(code, index).equals("'"));
-			
-			return new StringToken(word.append("'").toString());
+		String current = code.substring(index, index + 1);
+
+		if (current.equals("'")) {
+			return new StringExtractor(code, index).extract();
+		}
+		if (isWordCharacter(current)) {
+			return new WordExtractor(code, index).extract();
 		}
 		
-		while (isWordCharacter(next(code, index))) {
-			String current = next(code, index);
-			word.append(current);
-			decimalCount += current.equals(".") ? 1 : 0;
-			index += 1;
-			if (index == code.length() || !isWordCharacter(next(code, index))) {
-				if (word.toString().matches("-?\\d+")) {
-					return new IntegerToken(word.toString());
-				}
-				if (word.toString().matches("-?[0-9.]{2,}") && decimalCount == 1) {
-					return new DoubleToken(word.toString());
-				}
-                return new WordToken(word.toString());
-			}
-		}
-		
-		if (isSymbol(next(code, index))) {
+		if (isSymbol(current)) {
 			return new SymbolToken(SYMBOL_TO_TOKEN_TYPE.get(code.substring(index, index+1)));
 		}
 		
