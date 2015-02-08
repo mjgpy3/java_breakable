@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -77,6 +76,9 @@ public class Tokenizer implements ITokenizer {
 				}
 				if (word.toString().matches("-?[0-9.]{2,}") && decimalCount == 1) {
 					return new DoubleToken(word.toString());
+				}
+				if (word.toString().equals("''")) {
+					return new StringToken(word.toString());
 				}
                 return new WordToken(word.toString());
 			}

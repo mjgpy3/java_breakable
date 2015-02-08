@@ -1,7 +1,7 @@
 package com.mjgpy3.sonicleet.tokenizer;
 
-import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -39,6 +39,8 @@ public class Tokenizer_NumberOfResultsTest {
 				{"foo bar", 2},
 				{"[a b, a + b]", 8},
 				{"add=[b c, b + c]", 10},
+				{"add=[b c, + 42 -92.71]", 10},
+				{"add=[b c, + -42 -.71]", 10},
 				{"equal?", 1},
 				{"42", 1},
 				{"-42", 1},

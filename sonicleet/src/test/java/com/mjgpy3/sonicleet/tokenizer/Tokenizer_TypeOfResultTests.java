@@ -1,8 +1,7 @@
 package com.mjgpy3.sonicleet.tokenizer;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsCollectionContaining.hasItem;
+import static org.hamcrest.core.Is.is;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -54,6 +53,8 @@ public class Tokenizer_TypeOfResultTests {
 				{"4.2.9", TokenType.WORD},
 				{"-", TokenType.WORD},
 				{"-.", TokenType.WORD},
+				{"2..2", TokenType.WORD},
+				{"''", TokenType.STRING},
 		});
 	}
 	

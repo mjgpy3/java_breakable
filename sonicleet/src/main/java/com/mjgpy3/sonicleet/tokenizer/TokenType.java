@@ -12,5 +12,6 @@ public enum TokenType {
 	IGNORED,
 	BIND,
 	INTEGER,
-	DOUBLE
+	DOUBLE,
+	STRING
 }
