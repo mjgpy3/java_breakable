@@ -14,9 +14,9 @@ Ease of use programming language, that is nerdy beyond compare
 
 ```
 cond {
-  == 0 (mod x 3), "Fizz",
-  == 0 (mod x 5), "Buzz",
-  == 0 (mod x 15), "FizzBuzz"
+  equal? 0 (mod x 3), "Fizz",
+  equal? 0 (mod x 5), "Buzz",
+  equal? 0 (mod x 15), "FizzBuzz"
 }
 ```
 So,
@@ -24,6 +24,7 @@ So,
  - Items are comma separated
  - Very LISP-like (i.e. no operator prec)
  - Space to apply functions
+ - `equal?` rather than ==
 
 ```
 map [value, + 1 value] {1, 2, 3}
