@@ -30,8 +30,9 @@ public class Tokenizer_NumberOfResultsTest {
 	public static Collection<Object[]> cases() {
 		return Arrays.asList(new Object[][] {
 				{"", 0},
-				{"foobar", 1},
+				{"f", 1},
 				{" ", 0},
+				{"a b", 2},
 		});
 	}
 	

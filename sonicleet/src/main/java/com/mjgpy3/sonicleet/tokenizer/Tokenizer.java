@@ -21,20 +21,25 @@ public class Tokenizer implements ITokenizer {
 		if (code.isEmpty()) { return empty(); }
 
 		Collection<IToken> result = empty();
+		Integer i = 0;
+		IToken currentToken;
+		
+		while (i < code.length()) {
+			currentToken = nextToken(i, code);
+			i += currentToken.length();
 
-		add(nextToken(0, code), result);
+			if (currentToken.tokenType() != TokenType.IGNORED) {
+				result.add(currentToken);
+			}
+		}
 
 		return result;
 	}
 	
-	private void add(IToken token, Collection<IToken> tokens) {
-		if (token.tokenType() != TokenType.IGNORED) {
-			tokens.add(token);
-		}
-	}
-	
 	private IToken nextToken(Integer index, String code) {
-		if (SYMBOL_TO_TOKEN_TYPE.containsKey(code.substring(index, 1))) {
+		System.out.println(index);
+		System.out.println(code);
+		if (SYMBOL_TO_TOKEN_TYPE.containsKey(code.substring(index, index+1))) {
 			return new SymbolToken(SYMBOL_TO_TOKEN_TYPE.get(code.substring(index, index+1)));
 		}
 		
@@ -42,7 +47,7 @@ public class Tokenizer implements ITokenizer {
 			return new IgnoredToken();
 		}
 		
-		return new WordToken();
+		return new WordToken(code.substring(index, index+1));
 	}
 
 	private Collection<IToken> empty() {
