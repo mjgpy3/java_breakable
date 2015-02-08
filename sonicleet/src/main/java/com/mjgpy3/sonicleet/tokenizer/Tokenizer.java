@@ -9,6 +9,8 @@ import java.util.Set;
 
 public class Tokenizer implements ITokenizer {
 	
+	private static final String STRING_DELIMS = "'\"";
+	public static final String IGNORED_SYMBOLS = " \t\n";
 	public static final Map<String, TokenType> SYMBOL_TO_TOKEN_TYPE =
 			new HashMap<String, TokenType>() {{
 				put("[", TokenType.OPEN_SQUARE);
@@ -20,11 +22,6 @@ public class Tokenizer implements ITokenizer {
 				put(",", TokenType.COMMA);
 				put("=", TokenType.BIND);
 			}};
-	public static final Set<String> IGNORED_SYMBOLS = new HashSet<String>() {{
-		add(" ");
-		add("\t");
-		add("\n");
-	}};
 
 	public Collection<IToken> tokenize(String code) {
 		if (code.isEmpty()) { return empty(); }
@@ -44,18 +41,6 @@ public class Tokenizer implements ITokenizer {
 
 		return result;
 	}
-	
-	private boolean isWordCharacter(String s) {
-		return !isSymbol(s) && !IGNORED_SYMBOLS.contains(s);
-	}
-	
-	private boolean isSymbol(String s) {
-		return SYMBOL_TO_TOKEN_TYPE.containsKey(s);
-	}
-	
-	private boolean isStringStarter(String s) {
-		return "'\"".contains(s);
-	}
 
 	private IToken nextToken(Integer index, String code) {
 		String current = code.substring(index, index + 1);
@@ -72,6 +57,18 @@ public class Tokenizer implements ITokenizer {
 		}
 		
         return new IgnoredToken();
+	}
+
+	private boolean isWordCharacter(String s) {
+		return !isSymbol(s) && !IGNORED_SYMBOLS.contains(s);
+	}
+	
+	private boolean isSymbol(String s) {
+		return SYMBOL_TO_TOKEN_TYPE.containsKey(s);
+	}
+	
+	private boolean isStringStarter(String s) {
+		return STRING_DELIMS.contains(s);
 	}
 
 	private Collection<IToken> empty() {
