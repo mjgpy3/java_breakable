@@ -53,11 +53,15 @@ public class Tokenizer implements ITokenizer {
 		return SYMBOL_TO_TOKEN_TYPE.containsKey(s);
 	}
 	
+	private boolean isStringStarter(String s) {
+		return "'\"".contains(s);
+	}
+
 	private IToken nextToken(Integer index, String code) {
 		String current = code.substring(index, index + 1);
 
-		if (current.equals("'")) {
-			return new StringExtractor(code, index).extract();
+		if (isStringStarter(current)) {
+			return new StringExtractor(current, code, index).extract();
 		}
 		if (isWordCharacter(current)) {
 			return new WordExtractor(code, index).extract();

@@ -3,12 +3,14 @@ package com.mjgpy3.sonicleet.tokenizer;
 public class StringExtractor implements IExtractor {
 	
 	private String code;
-	private String last;
+	private boolean wasEscape;
 	private Integer index;
+	private String starter;
 
-	public StringExtractor(String code, Integer index) {
+	public StringExtractor(String starter, String code, Integer index) {
 		this.code = code;
 		this.index = index;
+		this.starter = starter;
 	}
 
 	public IToken extract() {
@@ -16,23 +18,19 @@ public class StringExtractor implements IExtractor {
 
 		do {
 			word.append(next());
-		} while (!wasEscape() && index != code.length() && !nextIsStringEnding());
+		} while (index != code.length() && !(nextIsStringEnding() && !wasEscape));
 
-		return new StringToken(word.append("'").toString());
-	}
-	
-	private boolean wasEscape() {
-		return last.equals("\\");
+		return new StringToken(word.append(starter).toString());
 	}
 	
 	private String next() {
 		String next = code.substring(index, index+1);
-		last = next;
+		wasEscape = next.equals("\\");
 		index += 1;
 		return next;
 	}
 	
 	private boolean nextIsStringEnding() {
-		return code.substring(index, index+1).equals("'");
+		return code.substring(index, index+1).equals(starter);
 	}
 }
