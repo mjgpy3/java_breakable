@@ -14,7 +14,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class TokenizerTests {
+public class Tokenizer_TypeOfResultTests {
 	
 	private ITokenizer uut;
 	
@@ -39,7 +39,7 @@ public class TokenizerTests {
 		});
 	}
 	
-	public TokenizerTests(String input, TokenType output) {
+	public Tokenizer_TypeOfResultTests(String input, TokenType output) {
 		singleInput = input;
 		expectedOutput = output;
 	}

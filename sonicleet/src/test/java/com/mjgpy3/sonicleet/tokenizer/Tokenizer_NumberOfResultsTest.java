@@ -34,6 +34,8 @@ public class Tokenizer_NumberOfResultsTest {
 				{" ", 0},
 				{"a b", 2},
 				{"ab", 1},
+				{"foo bar", 2},
+				{"[a b, a + b]", 8},
 		});
 	}
 	
