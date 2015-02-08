@@ -62,11 +62,17 @@ public class Tokenizer implements ITokenizer {
 	
 	private IToken nextToken(Integer index, String code) {
 		StringBuilder word = new StringBuilder();
+		boolean eachIsNumeric = true;
 		
 		while (isWordCharacter(next(code, index))) {
-			word.append(code.substring(index, index + 1));
+			String current = next(code, index);
+			word.append(current);
+			eachIsNumeric = eachIsNumeric && current.matches("\\d");
 			index += 1;
 			if (index == code.length() || !isWordCharacter(next(code, index))) {
+				if (eachIsNumeric) {
+					return new IntegerToken(word.toString());
+				}
                 return new WordToken(word.toString());
 			}
 		}

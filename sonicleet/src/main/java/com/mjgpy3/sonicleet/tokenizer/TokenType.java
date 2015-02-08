@@ -8,5 +8,6 @@ public enum TokenType {
 	COMMA,
 	WORD,
 	IGNORED,
-	BIND
+	BIND,
+	INTEGER
 }
