@@ -44,30 +44,38 @@ public class Tokenizer implements ITokenizer {
 		return result;
 	}
 	
-	private boolean isSymbolOrIgnored(String s) {
-		return SYMBOL_TO_TOKEN_TYPE.containsKey(s) || IGNORED_SYMBOLS.contains(s);
+	private boolean isWordCharacter(String s) {
+		return !isSymbol(s) && !isIgnored(s);
+	}
+	
+	private boolean isSymbol(String s) {
+		return SYMBOL_TO_TOKEN_TYPE.containsKey(s);
+	}
+	
+	private boolean isIgnored(String s) {
+		return IGNORED_SYMBOLS.contains(s);
+	}
+	
+	private String next(String s, Integer i) {
+		return s.substring(i, i+1);
 	}
 	
 	private IToken nextToken(Integer index, String code) {
 		StringBuilder word = new StringBuilder();
 		
-		while (!isSymbolOrIgnored(code.substring(index, index+1))) {
+		while (isWordCharacter(next(code, index))) {
 			word.append(code.substring(index, index + 1));
 			index += 1;
-			if (index == code.length() || isSymbolOrIgnored(code.substring(index, index+1))) {
+			if (index == code.length() || !isWordCharacter(next(code, index))) {
                 return new WordToken(word.toString());
 			}
 		}
 		
-		if (SYMBOL_TO_TOKEN_TYPE.containsKey(code.substring(index, index+1))) {
+		if (isSymbol(next(code, index))) {
 			return new SymbolToken(SYMBOL_TO_TOKEN_TYPE.get(code.substring(index, index+1)));
 		}
 		
-		if (IGNORED_SYMBOLS.contains(code.substring(index, index+1))) {
-			return new IgnoredToken();
-		}
-		
-		return new WordToken(code.substring(index, index+1));
+        return new IgnoredToken();
 	}
 
 	private Collection<IToken> empty() {
