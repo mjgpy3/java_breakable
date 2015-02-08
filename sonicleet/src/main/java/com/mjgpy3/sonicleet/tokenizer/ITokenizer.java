@@ -1,5 +1,7 @@
 package com.mjgpy3.sonicleet.tokenizer;
 
-public interface ITokenizer {
+import java.util.Collection;
 
+public interface ITokenizer {
+	Collection<Tok> tokenize(String string);
 }
