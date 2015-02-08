@@ -20,7 +20,7 @@ public class TokenizerTests {
 	
 	private String singleInput;
 	
-	private Tok expectedOutput;
+	private TokenType expectedOutput;
 	
 	@Before
 	public void setUp() {
@@ -30,22 +30,23 @@ public class TokenizerTests {
 	@Parameters
 	public static Collection<Object[]> cases() {
 		return Arrays.asList(new Object[][] {
-				{"[", Tok.OPEN_SQUARE},
-				{"]", Tok.CLOSE_SQUARE},
-				{"(", Tok.OPEN_PAREN},
-				{")", Tok.CLOSE_PAREN},
-				{",", Tok.COMMA},
+				{"[", TokenType.OPEN_SQUARE},
+				{"]", TokenType.CLOSE_SQUARE},
+				{"(", TokenType.OPEN_PAREN},
+				{")", TokenType.CLOSE_PAREN},
+				{",", TokenType.COMMA},
+				{"foo", TokenType.WORD},
 		});
 	}
 	
-	public TokenizerTests(String input, Tok output) {
+	public TokenizerTests(String input, TokenType output) {
 		singleInput = input;
 		expectedOutput = output;
 	}
 
 	@Test
-	public void square_brace_is_tokenizable() {
-		Collection<Tok> result = uut.tokenize(singleInput);
-		assertThat(result.iterator().next(), is(expectedOutput));
+	public void token_type_is_correct() {
+		Collection<IToken> result = uut.tokenize(singleInput);
+		assertThat(result.iterator().next().tokenType(), is(expectedOutput));
 	}
 }
