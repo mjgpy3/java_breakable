@@ -55,6 +55,7 @@ public class Tokenizer_TypeOfResultTests {
 				{"-.", TokenType.WORD},
 				{"2..2", TokenType.WORD},
 				{"''", TokenType.STRING},
+				{"'a'", TokenType.STRING},
 		});
 	}
 	

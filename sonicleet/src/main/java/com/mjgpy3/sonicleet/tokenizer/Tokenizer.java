@@ -65,6 +65,15 @@ public class Tokenizer implements ITokenizer {
 		StringBuilder word = new StringBuilder();
 		Integer decimalCount = 0;
 		
+		if (next(code, index).equals("'")) {
+			do {
+                word.append(next(code, index));
+                index += 1;
+			} while (!next(code, index).equals("'"));
+			
+			return new StringToken(word.append("'").toString());
+		}
+		
 		while (isWordCharacter(next(code, index))) {
 			String current = next(code, index);
 			word.append(current);
@@ -76,9 +85,6 @@ public class Tokenizer implements ITokenizer {
 				}
 				if (word.toString().matches("-?[0-9.]{2,}") && decimalCount == 1) {
 					return new DoubleToken(word.toString());
-				}
-				if (word.toString().equals("''")) {
-					return new StringToken(word.toString());
 				}
                 return new WordToken(word.toString());
 			}
