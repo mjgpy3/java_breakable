@@ -3,6 +3,8 @@ package com.mjgpy3.sonicleet.tokenizer;
 public enum TokenType {
 	OPEN_SQUARE,
 	CLOSE_SQUARE,
+	OPEN_CURLY,
+	CLOSE_CURLY,
 	OPEN_PAREN,
 	CLOSE_PAREN,
 	COMMA,

@@ -34,6 +34,8 @@ public class Tokenizer_TypeOfResultTests {
 				{"]", TokenType.CLOSE_SQUARE},
 				{"(", TokenType.OPEN_PAREN},
 				{")", TokenType.CLOSE_PAREN},
+				{"{", TokenType.OPEN_CURLY},
+				{"}", TokenType.CLOSE_CURLY},
 				{",", TokenType.COMMA},
 				{"foo", TokenType.WORD},
 				{"equal?", TokenType.WORD},

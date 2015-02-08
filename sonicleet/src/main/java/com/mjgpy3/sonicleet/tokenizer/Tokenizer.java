@@ -14,6 +14,8 @@ public class Tokenizer implements ITokenizer {
 			new HashMap<String, TokenType>() {{
 				put("[", TokenType.OPEN_SQUARE);
 				put("]", TokenType.CLOSE_SQUARE);
+				put("{", TokenType.OPEN_CURLY);
+				put("}", TokenType.CLOSE_CURLY);
 				put("(", TokenType.OPEN_PAREN);
 				put(")", TokenType.CLOSE_PAREN);
 				put(",", TokenType.COMMA);
