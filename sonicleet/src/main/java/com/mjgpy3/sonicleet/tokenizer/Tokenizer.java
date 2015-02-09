@@ -3,9 +3,7 @@ package com.mjgpy3.sonicleet.tokenizer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class Tokenizer implements ITokenizer {
 	
@@ -49,7 +47,7 @@ public class Tokenizer implements ITokenizer {
 		String current = code.substring(index, index + 1);
 
 		if (isStringStarter(current)) {
-			return new StringExtractor(current, code, index).extract();
+			return new StringExtractor(code, index).extract();
 		}
 		if (isCharacterStarter(current)) {
 			return new CharacterExtractor(current, code, index).extract();

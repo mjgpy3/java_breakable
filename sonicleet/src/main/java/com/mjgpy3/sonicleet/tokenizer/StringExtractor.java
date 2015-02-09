@@ -5,12 +5,10 @@ public class StringExtractor implements IExtractor {
 	private String code;
 	private boolean wasEscape;
 	private Integer index;
-	private String starter;
 
-	public StringExtractor(String starter, String code, Integer index) {
+	public StringExtractor(String code, Integer index) {
 		this.code = code;
 		this.index = index;
-		this.starter = starter;
 	}
 
 	public IToken extract() {
@@ -20,7 +18,7 @@ public class StringExtractor implements IExtractor {
 			word.append(next());
 		} while (index != code.length() && !(nextIsStringEnding() && !wasEscape));
 
-		return new StringToken(word.append(starter).toString());
+		return new StringToken(word.append("'").toString());
 	}
 	
 	private String next() {
@@ -31,6 +29,6 @@ public class StringExtractor implements IExtractor {
 	}
 	
 	private boolean nextIsStringEnding() {
-		return code.substring(index, index+1).equals(starter);
+		return code.substring(index, index+1).equals("'");
 	}
 }
