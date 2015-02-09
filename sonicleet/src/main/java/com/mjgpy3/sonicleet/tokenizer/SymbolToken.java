@@ -16,4 +16,8 @@ public class SymbolToken implements IToken {
 		return 1;
 	}
 
+	public String value() {
+		return null;
+	}
+
 }

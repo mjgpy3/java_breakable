@@ -10,4 +10,8 @@ public class IgnoredToken implements IToken {
 		return 1;
 	}
 
+	public String value() {
+		return null;
+	}
+
 }

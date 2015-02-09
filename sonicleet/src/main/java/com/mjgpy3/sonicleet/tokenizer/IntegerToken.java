@@ -16,4 +16,8 @@ public class IntegerToken implements IToken {
 		return value.length();
 	}
 
+	public String value() {
+		return null;
+	}
+
 }

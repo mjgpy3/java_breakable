@@ -15,4 +15,8 @@ public class WordToken implements IToken {
 	public Integer length() {
 		return word.length();
 	}
+
+	public String value() {
+		return null;
+	}
 }

@@ -16,4 +16,8 @@ public class StringToken implements IToken {
 		return value.length();
 	}
 
+	public String value() {
+		return null;
+	}
+
 }

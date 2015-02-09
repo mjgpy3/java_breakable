@@ -16,4 +16,8 @@ public class CharacterToken implements IToken {
 		return text.length();
 	}
 
+	public String value() {
+		return null;
+	}
+
 }
