@@ -18,33 +18,28 @@ public class Parser implements IParser {
 	};
 	
 	public IAstNode parse(Collection<IToken> tokens) {
-		System.out.println("Parse Begin");
-		parseInState(tokens.iterator(), State.NONE);
+		State state = State.NONE;
+
+		for (IToken token : tokens) {
+			IAstNode node;
+			State nextState = state;
+
+			if (token.tokenType() == TokenType.WORD) {
+				node = new Apply(token.value());
+				nextState = State.APPLY_ARGS;
+			} else {
+				node = new SLInteger(token.value());
+			}
+
+			if (state == State.NONE) {
+				ast = node;
+			} else if (state == State.APPLY_ARGS) {
+				((Apply) ast).addArg(node);
+			}
+
+			state = nextState;
+		}
 
 		return ast;
 	}
-	
-	public void parseInState(Iterator<IToken> tokens, State state) {
-		IToken token = tokens.next();
-		IAstNode node;
-		State nextState = state;
-		
-		if (token.tokenType() == TokenType.WORD) {
-			node = new Apply(token.value());
-            nextState = State.APPLY_ARGS;
-		} else {
-            node = new SLInteger(token.value());
-		}
-		
-		if (state == State.NONE) {
-			ast = node;
-		} else if (state == State.APPLY_ARGS) {
-			((Apply) ast).addArg(node);
-		}
-		
-		if (tokens.hasNext()) {
-			parseInState(tokens, nextState);
-		}
-	}
-
 }
