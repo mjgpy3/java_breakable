@@ -10,7 +10,7 @@ import java.util.Set;
 public class Tokenizer implements ITokenizer {
 	
 	private static final String STRING_DELIMS = "'\"";
-	public static final String IGNORED_SYMBOLS = " \t\n";
+	public static final String IGNORED_SYMBOLS = " \t";
 	public static final Map<String, TokenType> SYMBOL_TO_TOKEN_TYPE =
 			new HashMap<String, TokenType>() {{
 				put("[", TokenType.OPEN_SQUARE);
@@ -23,6 +23,7 @@ public class Tokenizer implements ITokenizer {
 				put("=", TokenType.BIND);
 				put(":", TokenType.COLON);
 				put("|", TokenType.PIPE);
+				put("\n", TokenType.NEWLINE);
 			}};
 
 	public Collection<IToken> tokenize(String code) {

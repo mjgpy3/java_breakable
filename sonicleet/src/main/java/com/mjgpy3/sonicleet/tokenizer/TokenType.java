@@ -17,5 +17,6 @@ public enum TokenType {
 	COLON,
 	RANGE,
 	PIPE,
-	KWD_DATA
+	KWD_DATA,
+	NEWLINE
 }

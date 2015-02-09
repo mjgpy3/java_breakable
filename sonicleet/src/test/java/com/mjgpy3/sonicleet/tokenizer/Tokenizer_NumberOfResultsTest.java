@@ -31,7 +31,7 @@ public class Tokenizer_NumberOfResultsTest {
 		return Arrays.asList(new Object[][] {
 				{"", 0},
 				{"\t", 0},
-				{"\n", 0},
+				{"\n", 1},
 				{"f", 1},
 				{" ", 0},
 				{"a b", 2},

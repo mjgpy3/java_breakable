@@ -38,6 +38,7 @@ public class Tokenizer_TypeOfResultTests {
 				{",", TokenType.COMMA},
 				{":", TokenType.COLON},
 				{"|", TokenType.PIPE},
+				{"\n", TokenType.NEWLINE},
 				{"..", TokenType.RANGE},
 				{"data", TokenType.KWD_DATA},
 				{"foo", TokenType.WORD},
