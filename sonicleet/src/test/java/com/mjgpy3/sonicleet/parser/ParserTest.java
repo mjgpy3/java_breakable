@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -100,5 +101,20 @@ public class ParserTest {
 		IAstNode result = uut.parse(given);
 
 		assertThat(((Apply) result).args().size(), is(2));
+	}
+
+	@Test
+	public void Apply_arguments_seem_correct() {
+		Collection<IToken> given = tokens(
+				new WordToken("+"),
+				new IntegerToken("42"),
+				new IntegerToken("99"));
+		
+		IAstNode result = uut.parse(given);
+		
+		Iterator<IAstNode> iterator = ((Apply) result).args().iterator();
+		
+		assertThat(((SLInteger) iterator.next()).value(), is(42));
+		assertThat(((SLInteger) iterator.next()).value(), is(99));
 	}
 }
