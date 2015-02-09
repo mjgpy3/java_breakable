@@ -1,4 +1,7 @@
-package com.mjgpy3.sonicleet.tokenizer;
+package com.mjgpy3.sonicleet.tokenizer.extractors;
+
+import com.mjgpy3.sonicleet.tokenizer.tokens.IToken;
+import com.mjgpy3.sonicleet.tokenizer.tokens.StringToken;
 
 public class StringExtractor implements IExtractor {
 	

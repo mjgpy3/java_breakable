@@ -1,7 +1,15 @@
-package com.mjgpy3.sonicleet.tokenizer;
+package com.mjgpy3.sonicleet.tokenizer.extractors;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.mjgpy3.sonicleet.tokenizer.Tokenizer;
+import com.mjgpy3.sonicleet.tokenizer.tokens.DoubleToken;
+import com.mjgpy3.sonicleet.tokenizer.tokens.IToken;
+import com.mjgpy3.sonicleet.tokenizer.tokens.IntegerToken;
+import com.mjgpy3.sonicleet.tokenizer.tokens.MultiSymbolToken;
+import com.mjgpy3.sonicleet.tokenizer.tokens.TokenType;
+import com.mjgpy3.sonicleet.tokenizer.tokens.WordToken;
 
 public class WordExtractor implements IExtractor {
 

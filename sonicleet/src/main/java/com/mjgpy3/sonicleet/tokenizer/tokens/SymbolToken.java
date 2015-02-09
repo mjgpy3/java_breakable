@@ -1,4 +1,4 @@
-package com.mjgpy3.sonicleet.tokenizer;
+package com.mjgpy3.sonicleet.tokenizer.tokens;
 
 public class SymbolToken implements IToken {
 

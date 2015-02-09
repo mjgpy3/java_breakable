@@ -12,6 +12,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import com.mjgpy3.sonicleet.tokenizer.tokens.IToken;
+import com.mjgpy3.sonicleet.tokenizer.tokens.TokenType;
+
 @RunWith(Parameterized.class)
 public class Tokenizer_TypeOfResultTests {
 	
