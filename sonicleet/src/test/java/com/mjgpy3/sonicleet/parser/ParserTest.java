@@ -89,4 +89,16 @@ public class ParserTest {
 
 		assertThat(((Apply) result).args().size(), is(1));
 	}
+
+	@Test
+	public void Apply_can_have_two_arguments() {
+		Collection<IToken> given = tokens(
+				new WordToken("+"),
+				new IntegerToken("42"),
+				new IntegerToken("99"));
+		
+		IAstNode result = uut.parse(given);
+
+		assertThat(((Apply) result).args().size(), is(2));
+	}
 }
