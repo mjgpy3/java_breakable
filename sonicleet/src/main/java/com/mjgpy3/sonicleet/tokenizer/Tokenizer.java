@@ -21,6 +21,8 @@ public class Tokenizer implements ITokenizer {
 				put(")", TokenType.CLOSE_PAREN);
 				put(",", TokenType.COMMA);
 				put("=", TokenType.BIND);
+				put(":", TokenType.COLON);
+				put("|", TokenType.PIPE);
 			}};
 
 	public Collection<IToken> tokenize(String code) {

@@ -1,9 +1,16 @@
 package com.mjgpy3.sonicleet.tokenizer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class WordExtractor implements IExtractor {
 
 	private static final String DOUBLE_MATCHER = "-?[0-9.]{2,}";
 	private static final String INTEGER_MATCHER = "-?\\d+";
+	private static final Map<String, TokenType> WORD_TO_SPECIFIC_TOKEN_TYPE = new HashMap<String, TokenType>() {{
+		put("..", TokenType.RANGE);
+		put("data", TokenType.KWD_DATA);
+	}};
 	private Integer index;
 	private String code;
 	
@@ -28,6 +35,11 @@ public class WordExtractor implements IExtractor {
 				}
 				if (word.toString().matches(DOUBLE_MATCHER) && decimalCount == 1) {
 					result = new DoubleToken(word.toString());
+					break;
+				}
+				if (WORD_TO_SPECIFIC_TOKEN_TYPE.containsKey(word.toString())) {
+					String value = word.toString();
+					result = new MultiSymbolToken(WORD_TO_SPECIFIC_TOKEN_TYPE.get(value), value);
 					break;
 				}
 				result = new WordToken(word.toString());

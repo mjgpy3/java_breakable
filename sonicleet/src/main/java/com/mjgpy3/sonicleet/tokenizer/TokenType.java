@@ -13,5 +13,9 @@ public enum TokenType {
 	BIND,
 	INTEGER,
 	DOUBLE,
-	STRING
+	STRING,
+	COLON,
+	RANGE,
+	PIPE,
+	KWD_DATA
 }
