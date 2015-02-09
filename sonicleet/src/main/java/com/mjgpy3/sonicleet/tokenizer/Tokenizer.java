@@ -15,7 +15,6 @@ import com.mjgpy3.sonicleet.tokenizer.tokens.TokenType;
 
 public class Tokenizer implements ITokenizer {
 	
-	private static final String STRING_DELIMS = "'\"";
 	public static final String IGNORED_SYMBOLS = " \t";
 	public static final Map<String, TokenType> SYMBOL_TO_TOKEN_TYPE =
 			new HashMap<String, TokenType>() {{
