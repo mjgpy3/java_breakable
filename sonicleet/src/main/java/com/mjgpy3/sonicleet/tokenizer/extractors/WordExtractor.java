@@ -36,25 +36,28 @@ public class WordExtractor implements IExtractor {
 			String current = next();
 			word.append(current);
 			decimalCount += current.equals(".") ? 1 : 0;
-			if (index == code.length() || !nextIsWordCharacter()) {
-				if (word.toString().matches(INTEGER_MATCHER)) {
-					result = new IntegerToken(word.toString());
-					break;
+			if (endOfWord()) {
+				String value = word.toString();
+				if (value.matches(INTEGER_MATCHER)) {
+					result = new IntegerToken(value);
 				}
-				if (word.toString().matches(DOUBLE_MATCHER) && decimalCount == 1) {
-					result = new DoubleToken(word.toString());
-					break;
+				else if (value.matches(DOUBLE_MATCHER) && decimalCount == 1) {
+					result = new DoubleToken(value);
 				}
-				if (WORD_TO_SPECIFIC_TOKEN_TYPE.containsKey(word.toString())) {
-					String value = word.toString();
+				else if (WORD_TO_SPECIFIC_TOKEN_TYPE.containsKey(value)) {
 					result = new MultiSymbolToken(WORD_TO_SPECIFIC_TOKEN_TYPE.get(value), value);
-					break;
 				}
-				result = new WordToken(word.toString());
+				else {
+					result = new WordToken(value);
+				}
 			}
 		}
 		
 		return result;
+	}
+
+	private boolean endOfWord() {
+		return index == code.length() || !nextIsWordCharacter();
 	}
 
 	private boolean isWordCharacter(String s) {
