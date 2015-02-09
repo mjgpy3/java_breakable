@@ -9,7 +9,7 @@ import com.mjgpy3.sonicleet.tokenizer.tokens.IToken;
 public class Parser implements IParser {
 
 	public IAstNode parse(Collection<IToken> given) {
-		return new SLInteger();
+		return new SLInteger(given.iterator().next().value());
 	}
 
 }
