@@ -17,6 +17,6 @@ public class WordToken implements IToken {
 	}
 
 	public String value() {
-		return null;
+		return word;
 	}
 }

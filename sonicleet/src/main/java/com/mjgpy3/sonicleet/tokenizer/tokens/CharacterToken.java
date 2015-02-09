@@ -17,7 +17,7 @@ public class CharacterToken implements IToken {
 	}
 
 	public String value() {
-		return null;
+		return text.substring(1, text.length()-1);
 	}
 
 }

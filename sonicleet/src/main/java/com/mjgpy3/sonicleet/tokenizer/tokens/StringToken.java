@@ -17,7 +17,7 @@ public class StringToken implements IToken {
 	}
 
 	public String value() {
-		return null;
+		return value.substring(1, value.length()-1);
 	}
 
 }

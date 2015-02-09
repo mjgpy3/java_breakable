@@ -17,7 +17,7 @@ public class DoubleToken implements IToken {
 	}
 
 	public String value() {
-		return null;
+		return value;
 	}
 
 }
