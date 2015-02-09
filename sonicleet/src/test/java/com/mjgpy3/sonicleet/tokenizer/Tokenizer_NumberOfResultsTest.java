@@ -52,8 +52,6 @@ public class Tokenizer_NumberOfResultsTest {
 				{"' \\' '", 1},
 				{"\"\"", 1},
 				{"\"a\"", 1},
-				{"\"a b c\"", 1},
-				{"\" \\\" \"", 1},
 		});
 	}
 	

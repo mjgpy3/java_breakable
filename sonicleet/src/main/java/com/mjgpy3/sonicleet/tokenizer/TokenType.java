@@ -18,5 +18,6 @@ public enum TokenType {
 	RANGE,
 	PIPE,
 	KWD_DATA,
-	NEWLINE
+	NEWLINE,
+	CHARACTER
 }

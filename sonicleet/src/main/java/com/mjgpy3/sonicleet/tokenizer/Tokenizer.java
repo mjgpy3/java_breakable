@@ -51,6 +51,9 @@ public class Tokenizer implements ITokenizer {
 		if (isStringStarter(current)) {
 			return new StringExtractor(current, code, index).extract();
 		}
+		if (isCharacterStarter(current)) {
+			return new CharacterExtractor(current, code, index).extract();
+		}
 		if (isWordCharacter(current)) {
 			return new WordExtractor(code, index).extract();
 		}
@@ -71,7 +74,11 @@ public class Tokenizer implements ITokenizer {
 	}
 	
 	private boolean isStringStarter(String s) {
-		return STRING_DELIMS.contains(s);
+		return s.equals("'");
+	}
+
+	private boolean isCharacterStarter(String s) {
+		return s.equals("\"");
 	}
 
 	private Collection<IToken> empty() {

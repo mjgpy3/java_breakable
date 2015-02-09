@@ -63,10 +63,8 @@ public class Tokenizer_TypeOfResultTests {
 				{"'a'", TokenType.STRING},
 				{"'a b c'", TokenType.STRING},
 				{"' \\' '", TokenType.STRING},
-				{"\"\"", TokenType.STRING},
-				{"\"a\"", TokenType.STRING},
-				{"\"a b c\"", TokenType.STRING},
-				{"\" \\\" \"", TokenType.STRING},
+				{"\"a\"", TokenType.CHARACTER},
+				{"\"\n\"", TokenType.CHARACTER},
 		});
 	}
 	
