@@ -71,4 +71,22 @@ public class ParserTest {
 
 		assertThat(((Apply) result).name(), is("foobar"));
 	}
+
+	@Test
+	public void Apply_has_no_arguments_when_it_is_alone() {
+		Collection<IToken> given = tokens(new WordToken("foobar"));
+		
+		IAstNode result = uut.parse(given);
+
+		assertThat(((Apply) result).args().size(), is(0));
+	}
+
+	@Test
+	public void Apply_has_an_argument_if_it_is_next_to_another_value_token() {
+		Collection<IToken> given = tokens(new WordToken("-"), new IntegerToken("42"));
+		
+		IAstNode result = uut.parse(given);
+
+		assertThat(((Apply) result).args().size(), is(1));
+	}
 }
