@@ -1,9 +1,9 @@
-package com.mjgpy3.sonicleet.parser;
+package com.mjgpy3.sonicleet.ast;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.mjgpy3.sonicleet.ast.IAstNode;
+import com.mjgpy3.sonicleet.env.IEnvironment;
 
 public class Apply implements IAstNode {
 	
@@ -25,6 +25,11 @@ public class Apply implements IAstNode {
 
 	public void addArg(IAstNode parse) {
 		args.add(parse);
+	}
+
+	public void execute(IEnvironment env) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

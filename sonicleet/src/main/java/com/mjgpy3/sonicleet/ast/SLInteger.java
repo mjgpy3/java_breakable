@@ -1,5 +1,7 @@
 package com.mjgpy3.sonicleet.ast;
 
+import com.mjgpy3.sonicleet.env.IEnvironment;
+
 
 public class SLInteger implements IAstNode {
 
@@ -11,6 +13,11 @@ public class SLInteger implements IAstNode {
 
 	public Integer value() {
 		return Integer.parseInt(value);
+	}
+
+	public void execute(IEnvironment env) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
