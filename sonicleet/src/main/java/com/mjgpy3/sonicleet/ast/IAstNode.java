@@ -4,6 +4,6 @@ import com.mjgpy3.sonicleet.env.IEnvironment;
 
 public interface IAstNode {
 	
-	public void execute(IEnvironment env);
+	public IAstNode execute(IEnvironment env);
 
 }

@@ -27,9 +27,8 @@ public class Apply implements IAstNode {
 		args.add(parse);
 	}
 
-	public void execute(IEnvironment env) {
-		// TODO Auto-generated method stub
-		
+	public IAstNode execute(IEnvironment env) {
+		return null;
 	}
 
 }

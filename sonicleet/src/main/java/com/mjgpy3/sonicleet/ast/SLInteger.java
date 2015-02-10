@@ -15,9 +15,8 @@ public class SLInteger implements IAstNode {
 		return Integer.parseInt(value);
 	}
 
-	public void execute(IEnvironment env) {
-		// TODO Auto-generated method stub
-		
+	public IAstNode execute(IEnvironment env) {
+		return this;
 	}
 
 }
