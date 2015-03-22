@@ -30,4 +30,11 @@ public class SimpleEvaluationExecutorTest {
 
 		assertEquals((Integer) 42, result.integerValue());
 	}
+
+	@Test
+	public void another_number_executes_to_itself() {
+		SlInteger result = (SlInteger) executeText("20");
+
+		assertEquals((Integer) 20, result.integerValue());
+	}
 }
