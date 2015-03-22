@@ -9,6 +9,7 @@ import org.mjgpy3.sonicl.parser.Parser;
 import org.mjgpy3.sonicl.tokenizer.ITokenizer;
 import org.mjgpy3.sonicl.tokenizer.RawStringTokenizer;
 import org.mjgpy3.sonicl.value.SlInteger;
+import org.mjgpy3.sonicl.value.SlString;
 import org.mjgpy3.sonicl.value.SlValue;
 
 public class SimpleEvaluationExecutorTest {
@@ -18,8 +19,7 @@ public class SimpleEvaluationExecutorTest {
 		IParser parser = new Parser(tokenizer);
 		IExecutor executor = new Executor(parser);
 		
-		IEnvironment emptyEnvironment = new IEnvironment() {
-		};
+		IEnvironment emptyEnvironment = new IEnvironment() {};
 		
 		return executor.executeUnderEnv(emptyEnvironment);
 	}
@@ -36,5 +36,12 @@ public class SimpleEvaluationExecutorTest {
 		SlInteger result = (SlInteger) executeText("20");
 
 		assertEquals((Integer) 20, result.integerValue());
+	}
+	
+	@Test
+	public void a_string_executes_to_itself() {
+		SlString result = (SlString) executeText("'Pinky'");
+
+		assertEquals("Pinky", result.stringValue());
 	}
 }
