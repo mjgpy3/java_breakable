@@ -2,7 +2,6 @@ package org.mjgpy3.sonicl.executor;
 
 import org.mjgpy3.sonicl.environment.IEnvironment;
 import org.mjgpy3.sonicl.parser.IParser;
-import org.mjgpy3.sonicl.value.SlInteger;
 import org.mjgpy3.sonicl.value.SlValue;
 
 public class Executor implements IExecutor {
