@@ -8,8 +8,8 @@ import org.mjgpy3.sonicl.parser.IParser;
 import org.mjgpy3.sonicl.parser.Parser;
 import org.mjgpy3.sonicl.tokenizer.ITokenizer;
 import org.mjgpy3.sonicl.tokenizer.RawStringTokenizer;
-import org.mjgpy3.sonicl.values.SlInteger;
-import org.mjgpy3.sonicl.values.SlValue;
+import org.mjgpy3.sonicl.value.SlInteger;
+import org.mjgpy3.sonicl.value.SlValue;
 
 public class SimpleEvaluationExecutorTest {
 

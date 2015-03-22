@@ -1,7 +1,9 @@
 package org.mjgpy3.sonicl.tokenizer;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+import org.mjgpy3.sonicl.tokenizer.token.IntegerToken;
 import org.mjgpy3.sonicl.tokenizer.token.Token;
 
 public class RawStringTokenizer implements ITokenizer {
@@ -13,7 +15,9 @@ public class RawStringTokenizer implements ITokenizer {
 	}
 
 	public Collection<Token> tokenize() {
-		return null;
+		return new ArrayList<Token>() {{
+			add(new IntegerToken(code));
+		}};
 	}
 
 }
