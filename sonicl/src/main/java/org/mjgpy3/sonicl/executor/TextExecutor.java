@@ -1,5 +1,6 @@
 package org.mjgpy3.sonicl.executor;
 
+import org.mjgpy3.sonicl.environment.IEnvironment;
 import org.mjgpy3.sonicl.values.SlInteger;
 import org.mjgpy3.sonicl.values.SlValue;
 
@@ -11,8 +12,7 @@ public class TextExecutor implements IExecutor {
 		code = codeToExecute;
 	}
 
-	public SlValue execute() {
+	public SlValue executeUnderEnv(IEnvironment env) {
 		return new SlInteger();
 	}
-	
 }
