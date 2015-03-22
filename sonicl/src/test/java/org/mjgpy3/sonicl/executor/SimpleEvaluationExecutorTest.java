@@ -1,24 +1,32 @@
 package org.mjgpy3.sonicl.executor;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.mjgpy3.sonicl.environment.IEnvironment;
+import org.mjgpy3.sonicl.parser.IParser;
+import org.mjgpy3.sonicl.parser.Parser;
+import org.mjgpy3.sonicl.tokenizer.ITokenizer;
+import org.mjgpy3.sonicl.tokenizer.RawStringTokenizer;
 import org.mjgpy3.sonicl.values.SlInteger;
+import org.mjgpy3.sonicl.values.SlValue;
 
 public class SimpleEvaluationExecutorTest {
 
-	private IExecutor executor;
-	
-	private final IEnvironment emptyEnvironment = new IEnvironment() {
-	};
+	private SlValue executeText(String text) {
+		ITokenizer tokenizer = new RawStringTokenizer(text);
+		IParser parser = new Parser(tokenizer);
+		IExecutor executor = new Executor(parser);
+		
+		IEnvironment emptyEnvironment = new IEnvironment() {
+		};
+		
+		return executor.executeUnderEnv(emptyEnvironment);
+	}
 	
 	@Test
 	public void a_number_executes_to_itself() {
-		executor = new TextExecutor("42");
-		
-		SlInteger result = (SlInteger) executor.executeUnderEnv(emptyEnvironment);
+		SlInteger result = (SlInteger) executeText("42");
 
 		assertEquals((Integer) 42, result.integerValue());
 	}

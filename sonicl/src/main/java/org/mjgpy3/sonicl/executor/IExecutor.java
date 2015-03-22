@@ -5,6 +5,5 @@ import org.mjgpy3.sonicl.values.SlValue;
 
 public interface IExecutor {
 
-	public SlValue executeUnderEnv(IEnvironment env);
-	
+	public SlValue executeUnderEnv(IEnvironment env);	
 }
